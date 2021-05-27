@@ -57,6 +57,13 @@
     <button id="global-err-btn">Trigger a Global Error</button>
   </section>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "7768cda6624f48ae9b73330dbcbf9b61"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
   <script>
     let calculateBtn = document.querySelector('#calculate');
     calculateBtn.addEventListener('click', () => {
@@ -67,7 +74,7 @@
       try {
         output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
       } catch (err) {
-        if(err instanceof SyntaxError) {
+        if (err instanceof SyntaxError) {
           throw new UnexpectedNumberError();
         } else {
           throw err;
@@ -161,8 +168,13 @@
         this.name = "UnexpectedNumberError";
       }
     }
-    
+
     //Part 5
+    window.onerror = (event) => {
+      console.log("Logging a global error...")
+      console.log(event);
+    }
+    TrackJS.track('Testing TrackJS!');                  
 
   </script>
 </body>
