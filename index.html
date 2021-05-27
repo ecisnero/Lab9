@@ -64,7 +64,15 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (err) {
+        if(err instanceof SyntaxError) {
+          throw new UnexpectedNumberError();
+        } else {
+          throw err;
+        }
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -117,13 +125,13 @@
     });
 
     //Part 3
-    function errorFunction() {
+    function choseElement(queryName) {
       let chosenElement
       try {
 
         console.log("checkpoint 1");
         //change variable to different names to see which error is triggered.
-        chosenElement = document.querySelector(groupStartBtn);
+        chosenElement = document.querySelector(queryName);
         console.log("checkpoint 2");
 
       } catch (err) {
@@ -141,12 +149,20 @@
     }
 
     try {
-      errorFunction();
+      choseElement(globalErrBtn);
     } catch (err) {
       console.error("Uncaught Error: Invalid Selector - Check variable type");
     }
 
     //Part 4
+    class UnexpectedNumberError extends SyntaxError {
+      constructor() {
+        super("The number inputed was an unexpected input, check that it was inputted correctly.");
+        this.name = "UnexpectedNumberError";
+      }
+    }
+    
+    //Part 5
 
   </script>
 </body>
