@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +26,7 @@
     }
   </style>
 </head>
+
 <body>
   <fieldset>
     <legend>Error Calculator</legend>
@@ -67,6 +69,7 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+    //Part 2 
     let logBtn = document.querySelector('#log-btn');
     logBtn.addEventListener('click', () => {
       console.log(logBtn.innerHTML);
@@ -93,7 +96,7 @@
     });
     let tableBtn = document.querySelector('#table-btn');
     tableBtn.addEventListener('click', () => {
-      console.table([{Fruit: "Apple", Weight: 26}, {Fruit: "Banana", Weight: 18}, {Fruit: "Coconut", Weight: 999}]);
+      console.table([{ Fruit: "Apple", Weight: 26 }, { Fruit: "Banana", Weight: 18 }, { Fruit: "Coconut", Weight: 999 }]);
     });
 
     let timerStartBtn = document.querySelector('#timer-start-btn');
@@ -112,6 +115,40 @@
     globalErrBtn.addEventListener('click', () => {
       console.alert(ahh);
     });
+
+    //Part 3
+    function errorFunction() {
+      let chosenElement
+      try {
+
+        console.log("checkpoint 1");
+        //change variable to different names to see which error is triggered.
+        chosenElement = document.querySelector(groupStartBtn);
+        console.log("checkpoint 2");
+
+      } catch (err) {
+
+        if (err instanceof ReferenceError) {
+          console.error("Invalid Selector - Check existence of data stored in selector varible");
+        }
+        else {
+          throw err;
+        }
+      } finally {
+        console.log("checkpoint 3");
+      }
+
+    }
+
+    try {
+      errorFunction();
+    } catch (err) {
+      console.error("Uncaught Error: Invalid Selector - Check variable type");
+    }
+
+    //Part 4
+
   </script>
 </body>
+
 </html>
