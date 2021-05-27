@@ -42,17 +42,17 @@
   </fieldset>
 
   <section id="error-btns">
-    <button>Console Log Demo</button>
-    <button>Console Error Demo</button>
-    <button>Console Dir</button>
-    <button>Console dirxml</button>
-    <button>Console Group Start</button>
-    <button>Console Group End</button>
-    <button>Console Table</button>
-    <button>Start Timer</button>
-    <button>End Timer</button>
-    <button>Console Trace</button>
-    <button>Trigger a Global Error</button>
+    <button id="log-btn">Console Log Demo</button>
+    <button id="err-btn">Console Error Demo</button>
+    <button id="dir-btn">Console Dir</button>
+    <button id="dirxml-btn">Console dirxml</button>
+    <button id="group-start-btn">Console Group Start</button>
+    <button id="group-end-btn">Console Group End</button>
+    <button id="table-btn">Console Table</button>
+    <button id="timer-start-btn">Start Timer</button>
+    <button id="timer-end-btn">End Timer</button>
+    <button id="trace-btn">Console Trace</button>
+    <button id="global-err-btn">Trigger a Global Error</button>
   </section>
 
   <script>
@@ -67,6 +67,51 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+    let logBtn = document.querySelector('#log-btn');
+    logBtn.addEventListener('click', () => {
+      console.log(logBtn.innerHTML);
+    });
+    let errBtn = document.querySelector('#err-btn');
+    errBtn.addEventListener('click', () => {
+      console.error(errBtn.innerHTML);
+    });
+    let dirBtn = document.querySelector('#dir-btn');
+    dirBtn.addEventListener('click', () => {
+      console.dir(dirBtn);
+    });
+    let dirxmlBtn = document.querySelector('#dirxml-btn');
+    dirxmlBtn.addEventListener('click', () => {
+      console.dirxml(dirxmlBtn);
+    });
+    let groupStartBtn = document.querySelector('#group-start-btn');
+    groupStartBtn.addEventListener('click', () => {
+      console.group("Grouped Messages");
+    });
+    let groupEndBtn = document.querySelector('#group-end-btn');
+    groupEndBtn.addEventListener('click', () => {
+      console.groupEnd();
+    });
+    let tableBtn = document.querySelector('#table-btn');
+    tableBtn.addEventListener('click', () => {
+      console.table([{Fruit: "Apple", Weight: 26}, {Fruit: "Banana", Weight: 18}, {Fruit: "Coconut", Weight: 999}]);
+    });
+
+    let timerStartBtn = document.querySelector('#timer-start-btn');
+    timerStartBtn.addEventListener('click', () => {
+      console.time("Lab Timer");
+    });
+    let timerEndBtn = document.querySelector('#timer-end-btn');
+    timerEndBtn.addEventListener('click', () => {
+      console.timeEnd();
+    });
+    let traceBtn = document.querySelector('#trace-btn');
+    traceBtn.addEventListener('click', () => {
+      console.trace();
+    });
+    let globalErrBtn = document.querySelector('#global-err-btn');
+    globalErrBtn.addEventListener('click', () => {
+      console.alert(ahh);
+    });
   </script>
 </body>
 </html>
